@@ -18,3 +18,4 @@
   <b> TO DO </b>
   - check to correct scrap non-int experience year
   - check formating of text
+  - check for speed up
