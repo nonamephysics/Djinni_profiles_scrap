@@ -1,7 +1,7 @@
 from urllib.request import urlopen as uReq 
 from bs4 import BeautifulSoup as soup
 import re
-import codecs
+
 
 pageUrl = 'https://djinni.co/developers/?title=Scala' + '&page='
 
@@ -204,7 +204,7 @@ def skills (profile_id):
     skill_set_str = ''.join(str(elem) for elem in skill_set)
     
     return (skill_set_str)
-###
+
     
 
 
@@ -231,27 +231,27 @@ title=''
 for elem in profiles_id:
     title = (profile_title(elem))
     print (title)
-    print(type(title))
+#    print(type(title))
     
     loc = (location(elem))
     print (loc)
-    print(type(loc))
+#    print(type(loc))
     
     salary_exp = (salary(elem))
     print(salary_exp)
-    print(type(salary_exp))
+#    print(type(salary_exp))
     
     exp_y = experience(elem)
     print(exp_y)
-    print(type(exp_y))
+#    print(type(exp_y))
     
     eng_level = english_level(elem)
     print(eng_level)
-    print(type(eng_level))
+#    print(type(eng_level))
     
     skill_set = skills (elem)
     print(skill_set)
-    print(type(skill_set))
+#    print(type(skill_set))
     print('*****************************')
 
 
