@@ -1,0 +1,6 @@
+beautifulsoup4
+urllib3
+jupyterlab
+pandas
+
+pip install -r requirements.txt
