@@ -11,7 +11,7 @@
   - in termanal window type: <i><b>"path/Djinni_profiles_scrap> python start.py"</b></i>
   
   - collecting data saved to <i>"profile.txt"</i> file (utf-8)
-  - start JupyterNoteBook and open <i>"look_at_data.ipynb"</i> file 
+  - start JupyterNoteBook and open <i>"look_at_data.ipynb"</i> file to start explore data
   
   
   
