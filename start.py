@@ -1,6 +1,7 @@
 from urllib.request import urlopen as uReq 
 from bs4 import BeautifulSoup as soup
 import re
+import time
 
 
 pageUrl = 'https://djinni.co/developers/?title=Scala' + '&page='
@@ -12,7 +13,7 @@ pageSoup = soup(pageHtml, 'html.parser')
 
 
 def page_numbers(Url):
-    '''Get total number of pages in direction. For example if in the directions are 123 profiles - total number of pages will 123/10+1=13'''
+    '''Get total profiles number in direction.'''
     pageSoup = soup(pageHtml, 'html.parser')
     numb=(pageSoup.find('div',{'class':'page-header'}).text)
     page_num=''
@@ -20,11 +21,6 @@ def page_numbers(Url):
     for word in numb:
         if word.isdigit():
            page_num+=word
-          
-#    if int(page_num) % 10 !=0:
-#        number_of_pages = int(page_num) // 10 + 1
-#    else: 
-#        number_of_pages = int(page_num) // 10
     
     return (int(page_num))
 
@@ -51,7 +47,8 @@ def get_profile_id(Start_url, profiles_num):
         id_set = set(prof_url)
         id = list(id_set)
     return (id)
-#
+
+    
 def profile_title (profile_id): 
     '''Get title from persons profile'''
     profileUrl = 'https://djinni.co/q/'+profile_id
@@ -100,6 +97,7 @@ def location(profile_id):
         
     return (loc[0:len(loc)-1])
 
+
 def salary(profile_id):
     '''Get salary expectations in $ from persons profile'''
     profileUrl = 'https://djinni.co/q/'+profile_id
@@ -113,7 +111,7 @@ def salary(profile_id):
     return (salary) 
 
 
-def experience (profile_id): # nedd to grab and 1,5 yeras
+def experience (profile_id): # need to grab and 1,5 yeras
     '''Get experience in years from persons profile'''
     profileUrl = 'https://djinni.co/q/'+profile_id
     uClient = uReq(profileUrl)
@@ -131,7 +129,6 @@ def experience (profile_id): # nedd to grab and 1,5 yeras
             exp_y+=(elem)
             break
     return (exp_y)
-
 
 
 def english_level (profile_id):
@@ -204,11 +201,8 @@ def skills (profile_id):
     skill_set_str = ''.join(str(elem) for elem in skill_set)
     
     return (skill_set_str)
-
-    
-
-
-
+###
+  
 
 n = page_numbers(pageUrl)
 print('Total number of profiles in direction is: ' +str(n))
@@ -217,7 +211,7 @@ print('Total number of profiles in direction is: ' +str(n))
 profiles_id = get_profile_id(pageUrl, n) # id list
 print('List of profile id for collect: ' + (str(profiles_id)))
 print(len(profiles_id)) # check if all profiles are collected
-#
+
 
 out_filename = 'profile.txt'
 
@@ -231,28 +225,29 @@ title=''
 for elem in profiles_id:
     title = (profile_title(elem))
     print (title)
-#    print(type(title))
+    print(type(title))
     
     loc = (location(elem))
     print (loc)
-#    print(type(loc))
+    print(type(loc))
     
     salary_exp = (salary(elem))
     print(salary_exp)
-#    print(type(salary_exp))
+    print(type(salary_exp))
     
     exp_y = experience(elem)
     print(exp_y)
-#    print(type(exp_y))
+    print(type(exp_y))
     
     eng_level = english_level(elem)
     print(eng_level)
-#    print(type(eng_level))
+    print(type(eng_level))
     
     skill_set = skills (elem)
     print(skill_set)
-#    print(type(skill_set))
+    print(type(skill_set))
     print('*****************************')
+    time.sleep(1)
 
 
 
